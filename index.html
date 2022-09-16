@@ -17,7 +17,7 @@
         <h2 class="excerpt">Start your order</h2>
         <div class="order-section-btn">
           <!-- Button for the delivery option -->
-          <button class="order-btn" id="delivery" onclick="location.href='order-information.html'">
+          <button class="order-btn" id="deliverybtn" onclick="location.href='order-information.html'">
             <div class="symbol-text">
               <img src="motorbike.png" alt="motorbike" class="delivery-icon" />
               <h2 class="order-text">Delivery</h2>
@@ -25,7 +25,7 @@
             <i class="fas fa-chevron-right fa-2x"></i>
           </button>
           <!-- Button for the pickup option -->
-          <button class="order-btn pickup" onclick="location.href='order-information.html'">
+          <button class="order-btn pickup" id="pickupbtn" onclick="location.href='pickup-information.html'">
             <div class="symbol-text" id="pickup">
               <img src="home.png" alt="house" class="delivery-icon" />
               <h2 class="order-text">Pickup</h2>
@@ -35,5 +35,7 @@
         </div>
       </div>
     </div>
+
+    <script src="main.js"></script>
   </body>
 </html>

@@ -15,6 +15,9 @@ h2 {
   color: red;
 }
 
+.hide {
+  display: none;
+}
 .go-back-btn {
   position: absolute;
   margin-left: 20px;
