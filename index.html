@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Welcome to Cuppa Joes</title>
+    <link rel="stylesheet" href="stylesheet.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+  </head>
+  <body>
+    <!-- Home Section this is the section that will firstly greet the users -->
+    <div class="home">
+      <h1 class="title">Welcome to Cuppa Joes</h1>
+      <!-- The following section is going to be the section where the user can press what their coffee order is for -->
+      <div class="order-section">
+        <h2 class="excerpt">Start your order</h2>
+        <div class="order-section-btn">
+          <!-- Button for the delivery option -->
+          <button class="order-btn" id="delivery" onclick="location.href='order-information.html'">
+            <div class="symbol-text">
+              <img src="motorbike.png" alt="motorbike" class="delivery-icon" />
+              <h2 class="order-text">Delivery</h2>
+            </div>
+            <i class="fas fa-chevron-right fa-2x"></i>
+          </button>
+          <!-- Button for the pickup option -->
+          <button class="order-btn pickup" onclick="location.href='order-information.html'">
+            <div class="symbol-text" id="pickup">
+              <img src="home.png" alt="house" class="delivery-icon" />
+              <h2 class="order-text">Pickup</h2>
+            </div>
+            <i class="fas fa-chevron-right fa-2x"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

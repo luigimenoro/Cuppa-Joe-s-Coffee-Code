@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Welcome to Cuppa Joes</title>
+    <link rel="stylesheet" href="stylesheet.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+  </head>
+  <body>
+    <!-- Section for asking the user their personal information -->
+    <!-- When the user picked delivery -->
+    <button class="go-back-btn">
+      <a href="index.html"> <i class="fas fa-chevron-left"></i>Go Back</a>
+    </button>
+    <div class="delivery-container">
+      <p>
+        You have chosen your coffee order to be <span class="imp">delivered</span>. <br />
+        Before we continue, we need to ask for your name, your home address and your phone number.
+      </p>
+      <form action="" class="delivery-form" id="deliveryForm">
+        <div class="name-section">
+          <label for="name">Name</label>
+          <input type="text" id="name" />
+          <div class="error" id="nameError"></div>
+        </div>
+        <div class="address-section">
+          <label for="address">Address</label>
+          <input type="text" id="address" />
+          <div class="error" id="addressError"></div>
+        </div>
+        <div class="phonenum-section">
+          <label for="phoneNumber">Phone Number</label>
+          <input type="text" id="phoneNumber" />
+          <div class="error" id="phoneNumError"></div>
+        </div>
+        <button type="submit" class="deliveryFormBtn">Start Order</button>
+      </form>
+    </div>
+    <div class="pickup-container delivery-container">
+      <p>
+        You have chosen your coffee order to be <span class="imp">pickup</span>. <br />
+        Before we continue, we need to ask for your name only.
+      </p>
+      <form action="" class="delivery-form" id="pickupForm">
+        <div class="name-section">
+          <label for="name">Name</label>
+          <input type="text" id="name" />
+          <div class="error" id="nameError"></div>
+        </div>
+        <button type="submit" class="deliveryFormBtn">Start Order</button>
+      </form>
+    </div>
+  </body>
+</html>

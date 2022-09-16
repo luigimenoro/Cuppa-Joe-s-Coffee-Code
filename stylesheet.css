@@ -1,0 +1,161 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter&family=Lato:wght@900&family=Lora&display=swap");
+/* Codes for generic css value */
+* {
+  /*To change the default values of the web browser*/
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+h2 {
+  font-size: 22px;
+}
+
+.imp {
+  color: red;
+}
+
+.go-back-btn {
+  position: absolute;
+  margin-left: 20px;
+}
+.home {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.title {
+  font-size: 60px;
+  font-family: "Lato", sans-serif;
+  margin-bottom: 20px;
+}
+
+.order-section-btn {
+  margin-top: 10px;
+}
+
+.excerpt {
+  font-size: 30px;
+  font-family: "Lato", sans-serif;
+  text-decoration: underline;
+}
+.order-btn,
+.symbol-text {
+  display: inline-flex;
+}
+.order-text {
+  margin-top: 5px;
+}
+
+.order-btn {
+  margin-right: 20px;
+  border-radius: 8px;
+  padding: 20px 10px;
+  background-color: rgba(151, 73, 40, 0.7);
+}
+
+.pickup {
+  background-color: rgba(218, 145, 0, 0.8);
+}
+
+.order-btn:hover {
+  opacity: 0.8;
+  transition: 0.8s;
+  cursor: pointer;
+}
+.delivery-icon {
+  width: 30px;
+  margin-right: 10px;
+}
+
+.symbol-text {
+  margin-right: 120px;
+}
+
+/* Start for the order-information section*/
+
+.delivery-container {
+  width: 40%;
+  box-shadow: rgb(0 0 0 / 40%) 0px 0.5px 10px 0px;
+  border-radius: 8px;
+  margin: 50px auto;
+  padding: 30px 20px;
+}
+
+.delivery-form {
+  margin-top: 10px;
+  border-top: 0.6px solid #a3a3a3;
+}
+
+.delivery-container p {
+  font-size: 20px;
+  font-family: "Inter", sans-serif;
+}
+
+.delivery-form input {
+  width: 100%;
+  font-size: 17px;
+  height: 30px;
+  font-family: "Inter", sans-serif;
+}
+
+.delivery-form label {
+  line-height: 30px;
+  font-size: 20px;
+  font-family: "Inter", sans-serif;
+}
+
+.name-section,
+.address-section,
+.phonenum-section {
+  margin-top: 15px;
+}
+
+.phonenum-section {
+  margin-bottom: 30px;
+}
+
+.deliveryFormBtn {
+  width: 100%;
+  height: 40px;
+  border-radius: 10px;
+  color: white;
+  font-size: 17px;
+  font-weight: bold;
+  font-family: "Lato", sans-serif;
+  background-color: rgb(31, 195, 106);
+  border: rgb(31, 195, 106);
+}
+
+.deliveryFormBtn:hover {
+  opacity: 0.9;
+  cursor: pointer;
+  transition: 0.6s;
+}
+
+.go-back-btn a {
+  font-size: 15px;
+  color: white;
+  text-decoration: none;
+}
+
+.go-back-btn {
+  background-color: rgba(0, 0, 0, 0.45);
+  padding: 10px;
+  border-radius: 20px;
+  border: rgba(0, 0, 0, 0.45);
+}
+
+.fa-chevron-left {
+  margin-right: 10px;
+}
+
+.go-back-btn:hover {
+  background-color: rgba(0, 0, 0, 0.7);
+  transition: 0.6s;
+  cursor: pointer;
+}
+
+.pickup-container button {
+  margin-top: 20px;
+}
