@@ -20,11 +20,11 @@
       <form action="" class="delivery-form" id="pickupForm">
         <div class="name-section">
           <label for="name">Name</label>
-          <input type="text" id="name" />
-          <div class="error" id="nameError"></div>
+          <input type="text" id="name" required oninvalid="this.setCustomValidity('Please enter your name')" oninput="setCustomValidity('')" />
         </div>
         <button type="submit" class="deliveryFormBtn">Start Order</button>
       </form>
     </div>
+    <script src="main.js"></script>
   </body>
 </html>
