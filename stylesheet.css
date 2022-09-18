@@ -134,7 +134,7 @@ h2 {
   width: 50%;
   position: absolute;
   margin-top: 40px;
-  margin-left: 25%;
+  margin-left: -40%;
 }
 
 .deliveryFormBtn:hover {
@@ -171,12 +171,22 @@ h2 {
 }
 
 /* Add styles to the menu page */
+
+.ask-number {
+  text-align: center;
+  margin-top: 16%;
+  font-size: 15px;
+  font-family: "Inter", sans-serif;
+}
+.main-cont {
+  display: flex;
+}
 #menuContainer {
   margin-top: 25px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  width: 75%;
-  gap: 10px;
+  width: 95%;
+  gap: 30px;
 }
 
 .products {
@@ -245,4 +255,74 @@ h2 {
 
 .shop-item-btn:hover {
   cursor: pointer;
+}
+
+/* Shopping Cart */
+.shopping-cart {
+  height: 100vh;
+  border-radius: 10px;
+  background-color: antiquewhite;
+  width: 40%;
+}
+.shopping-cart-title {
+  margin-top: 14px;
+  margin-bottom: 14px;
+  display: flex;
+  justify-content: space-around;
+  font-size: 11px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  text-decoration: underline;
+}
+
+.main-title {
+  text-align: center;
+  font-size: 35px;
+  font-family: "Inter", sans-serif;
+}
+
+.cart-row {
+  display: flex;
+  justify-content: space-around;
+  padding: 5px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid black;
+}
+
+.cart-quantity input {
+  width: 40px;
+}
+
+#shoppingCart {
+  font-size: 17px;
+  color: black;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.cart-price {
+  margin-left: 8px;
+}
+
+.cart-size {
+  margin-left: -40px;
+}
+
+.btn-danger {
+  background-color: #eb5757;
+  border: 10px #eb5757;
+  font-weight: bold;
+  border-radius: 10px;
+  color: white;
+  font-size: 17px;
+  padding: 5px 1px;
+}
+
+.btn-danger:hover {
+  transition: 0.4s;
+  opacity: 0.8;
+}
+
+.cart-item-title {
+  font-weight: bolder;
+  width: 60px;
+  text-overflow: ellipsis;
 }
