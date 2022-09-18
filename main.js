@@ -173,12 +173,12 @@ function getSize(item) {
 
 function checkValid(userInput, errorText) {
   if (!userInput || userInput > 10 || userInput < 1) {
-    let errorMessage = document.getElementById(error);
+    let errorMessage = document.getElementById("error");
     errorMessage.innerHTML = errorText;
     return false;
   } else {
     errorText = "";
-    let errorMessage = document.getElementById(error);
+    let errorMessage = document.getElementById("error");
     errorMessage.innerHTML = errorText;
     return true;
   }
@@ -271,15 +271,17 @@ if (window.location.href.includes("/menu.html")) {
 
   startOrder.addEventListener("click", function (e) {
     e.preventDefault();
-    showMenu();
+    // Check if the entered number of coffees is valid
+    var numOfCoffees = checkValid(howManyCoffees.value, "Please enter an appropriate amount of coffees you are going to buy. Maximum of 10 coffees per order only");
+    if (!numOfCoffees) {
+      return;
+    }
+    // Store the entered number of coffees that the user are buying to an array
+    numberofCoffees.push(numOfCoffees);
     startOrder.classList.add("hide");
     shoppingCart.classList.remove("hide");
     askNumber.classList.add("hide");
-
-    // Check if the entered number of coffees is valid
-    var numOfCoffees = checkValid(howManyCoffees.value, "Please enter an appropriate amount of coffees you are going to buy. Maximum of 10 coffees per order only");
-    // Store the entered number of coffees that the user are buying to an array
-    numberofCoffees.append(numOfCoffees);
+    showMenu();
 
     if (document.readyState == "loading") {
       document.addEventListener("DOMContentLoaded", ready);
