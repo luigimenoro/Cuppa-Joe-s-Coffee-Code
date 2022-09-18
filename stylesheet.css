@@ -130,6 +130,13 @@ h2 {
   border: rgb(31, 195, 106);
 }
 
+.smallbtn {
+  width: 50%;
+  position: absolute;
+  margin-top: 40px;
+  margin-left: 25%;
+}
+
 .deliveryFormBtn:hover {
   opacity: 0.9;
   cursor: pointer;
@@ -161,4 +168,81 @@ h2 {
 
 .pickup-container button {
   margin-top: 20px;
+}
+
+/* Add styles to the menu page */
+#menuContainer {
+  margin-top: 25px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  width: 75%;
+  gap: 10px;
+}
+
+.products {
+  box-shadow: rgb(0 0 0 / 20%) 0px 0.5px 10px 0px;
+  border-radius: 8px;
+  padding: 20px;
+  font-size: 15px;
+  font-family: "Inter", sans-serif;
+  height: 240px;
+}
+
+.product-name {
+  padding: 10px;
+  font-size: 25px;
+  font-family: "Inter", sans-serif;
+  text-align: center;
+}
+
+.choose-size {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.price {
+  font-weight: bolder;
+  font-size: 20px;
+  text-align: center;
+  margin-bottom: 14px;
+}
+
+.choose-size {
+  margin-top: 20px;
+}
+
+.choose-size label {
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.choose-size select,
+.amountProduct select {
+  font-size: 18px;
+  padding: 4px;
+  border-radius: 5px;
+}
+
+.amountProduct {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.amountProduct select {
+  margin-right: 10px;
+}
+
+.shop-item-btn {
+  background-color: rgb(31, 195, 106);
+  border: rgb(31, 195, 106);
+  border-radius: 10px;
+  color: white;
+  font-size: 17px;
+  padding: 0 15px;
+}
+
+.shop-item-btn:hover {
+  cursor: pointer;
 }
