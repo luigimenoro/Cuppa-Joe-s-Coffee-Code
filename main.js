@@ -230,7 +230,7 @@ function addItemtoCart(title, price, size, quantity) {
   cartRow.getElementsByClassName("btn-danger")[0].addEventListener("click", removeCartItem);
   cartRow.getElementsByClassName("cart-quantity-input")[0].addEventListener("change", quantityChanged);
 }
-// Function to add items to cart
+// Function to add items to cart in this function it will get the information of the coffee that the user has chosen. It will get the name of the coffee, the price, the size that they have chosen, and the quantity that they have picked
 function addItemToCartClicked(event) {
   var button = event.target;
   var shopItem = button.parentElement.parentElement.parentElement;
