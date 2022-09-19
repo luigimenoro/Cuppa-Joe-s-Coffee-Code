@@ -210,7 +210,7 @@ function addItemtoCart(title, price, size, quantity) {
   var cartItemSize = cartItems.getElementsByClassName("cart-size");
   for (i = 0; i < cartItemNames.length; i++) {
     if (cartItemNames[i].innerText == title && cartItemSize[i].innerText == size) {
-      alert("This is item is already added to the cart");
+      alert("This item is already added to the cart");
       return;
     }
   }
@@ -230,15 +230,19 @@ function addItemtoCart(title, price, size, quantity) {
   cartRow.getElementsByClassName("btn-danger")[0].addEventListener("click", removeCartItem);
   cartRow.getElementsByClassName("cart-quantity-input")[0].addEventListener("change", quantityChanged);
 }
+
 // Function to add items to cart in this function it will get the information of the coffee that the user has chosen. It will get the name of the coffee, the price, the size that they have chosen, and the quantity that they have picked
 function addItemToCartClicked(event) {
+  // Get the add button from the document
   var button = event.target;
-  var shopItem = button.parentElement.parentElement.parentElement;
-  var title = shopItem.getElementsByClassName("product-name")[0].innerText;
-  var selectElement = getValueFromSelect(shopItem, "coffee-Size-Chosen");
-  var price = selectElement.options[selectElement.selectedIndex].value;
-  var size = getSize(price);
-  let getQuantity = getValueFromSelect(shopItem, "amountChosen");
+  var shopItem = button.parentElement.parentElement.parentElement; //This variable is going to be the parent element of the items, this variable is going to be used to get the name of the product.
+
+  // Get the information of the coffees picked
+  var title = shopItem.getElementsByClassName("product-name")[0].innerText; //Retrieve the name of the product
+  var selectElement = getValueFromSelect(shopItem, "coffee-Size-Chosen"); // Retrrieve the size chosen by the user
+  var price = selectElement.options[selectElement.selectedIndex].value; //Retrieve the price
+  var size = getSize(price); //Retrieve the size that hthey have chosen
+  let getQuantity = getValueFromSelect(shopItem, "amountChosen"); // Retrieve the quantity of products that they are thinking of buying.
   let quantity = getQuantity.options[getQuantity.selectedIndex].value;
   console.log(title, price, size, quantity);
   addItemtoCart(title, price, size, quantity);
