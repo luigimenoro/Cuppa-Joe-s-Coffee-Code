@@ -1,6 +1,8 @@
 // Assign the constants that will be used such the price and the delivery price
 const PRICE = 5.5;
 const DELIVERYPRICE = 5;
+const MEDIUMFEE = 1;
+
 // Assign coffee products
 var PRODUCT = {
   1: {
@@ -140,6 +142,12 @@ function ready() {
     button2.addEventListener("click", removeCartItem);
   }
 
+  var quantityInputs = document.getElementsByClassName("cart-quantity-input");
+  for (var i = 0; i < quantityInputs.length; i++) {
+    var input = quantityInputs[i];
+    input.addEventListener("change", quantityChanged);
+  }
+
   // Specifies the buttons that when clicked will add the chosen items to the shopping cart
   var addItemToCartBtns = document.getElementsByClassName("shop-item-btn");
   for (i = 0; i < addItemToCartBtns.length; i++) {
@@ -147,28 +155,25 @@ function ready() {
     button.addEventListener("click", addItemToCartClicked);
   }
 }
+
+function quantityChanged(event) {
+  var input = event.target;
+  if (isNaN(input.value) || input.value <= 0) {
+    input.value = 1;
+  }
+  updateCartTotal();
+}
 // Function that will remove items that is present in the shopping cart - please write more things in here
 function removeCartItem(event) {
   var btnClicked = event.target;
   btnClicked.parentElement.parentElement.remove();
+  updateCartTotal();
 }
 
 // In this function, as I have a select HTML tag, I have to get the value that was chosen in that tag. In this case I need a parameter so that I can identify which select tag I am getting it from and this the "div"
 function getValueFromSelect(div, name) {
   var selectElement = div.getElementsByClassName(name)[0];
   return selectElement; // Returns the selectElement
-}
-
-// In this function's job is to get the size that the user has chosen by going through the item, and if the item is the same as the regular price, or the medium price or the large price it wil return that size
-function getSize(item) {
-  if (item == PRODUCT[i].regularPrice.toFixed(2)) {
-    var size = "regular";
-  } else if (item == PRODUCT[i].mediumPrice.toFixed(2)) {
-    var size = "medium";
-  } else {
-    var size = "large";
-  }
-  return size;
 }
 
 function checkValid(userInput, errorText) {
@@ -183,6 +188,48 @@ function checkValid(userInput, errorText) {
     return userInput;
   }
 }
+
+// In this function's job is to get the size that the user has chosen by going through the item, and if the item is the same as the regular price, or the medium price or the large price it wil return that size
+function getSize(item) {
+  if (item == PRICE) {
+    var size = "Regular";
+  } else if (item == PRICE + MEDIUMFEE) {
+    var size = "Medium";
+  } else {
+    var size = "Large";
+  }
+  return size;
+}
+// Adds item that is clicked to thhe cart, in this function it will have 4 different parameters that is needded to be specified in orde for the function to occur.
+function addItemtoCart(title, price, size, quantity) {
+  var cartRow = document.createElement("div");
+  cartRow.classList.add("cart-row");
+  var cartItems = document.getElementsByClassName("cart-items")[0];
+  // Check if the same items has been added to the shoppning cart
+  var cartItemNames = cartItems.getElementsByClassName("cart-item-title");
+  var cartItemSize = cartItems.getElementsByClassName("cart-size");
+  for (i = 0; i < cartItemNames.length; i++) {
+    if (cartItemNames[i].innerText == title && cartItemSize[i].innerText == size) {
+      alert("This is item is already added to the cart");
+      return;
+    }
+  }
+  var cartRowContents = `
+        <div class="cart-item cart-column">
+            <span class="cart-item-title">${title}</span>
+        </div>
+        <span class="cart-size">${size}</span>
+        <span class="cart-price cart-column">$${price}</span>
+        <div class="cart-quantity cart-column">
+            <input class="cart-quantity-input" type="number" value="${quantity}"  min="1" max="10"/>
+            <button class="btn btn-danger" type="button">REMOVE</button>
+        </div>
+`;
+  cartRow.innerHTML = cartRowContents;
+  cartItems.append(cartRow);
+  cartRow.getElementsByClassName("btn-danger")[0].addEventListener("click", removeCartItem);
+  cartRow.getElementsByClassName("cart-quantity-input")[0].addEventListener("change", quantityChanged);
+}
 // Function to add items to cart
 function addItemToCartClicked(event) {
   var button = event.target;
@@ -190,33 +237,28 @@ function addItemToCartClicked(event) {
   var title = shopItem.getElementsByClassName("product-name")[0].innerText;
   var selectElement = getValueFromSelect(shopItem, "coffee-Size-Chosen");
   var price = selectElement.options[selectElement.selectedIndex].value;
+  var size = getSize(price);
   let getQuantity = getValueFromSelect(shopItem, "amountChosen");
   let quantity = getQuantity.options[getQuantity.selectedIndex].value;
-  var size = getSize(price);
   console.log(title, price, size, quantity);
   addItemtoCart(title, price, size, quantity);
+  updateCartTotal();
 }
 
-// Adds item that is clicked to thhe cart, in this function it will have 4 different parameters that is needded to be specified in orde for the function to occur.
-//
-function addItemtoCart(title, price, size, quantity) {
-  var cartRow = document.createElement("div");
-  cartRow.classList.add("cart-row");
-  var cartItems = document.getElementById("shoppingCart");
-  var cartRowContents = `
-      <div class="cart-item cart-column">
-          <span class="cart-item-title">${title}</span>
-      </div>
-      <span class="cart-size">${size}</span>
-      <span class="cart-price cart-column">$${price}</span>
-      <div class="cart-quantity cart-column">
-          <input class="cart-quantity-input" type="number" value="${quantity}">
-          <button class="btn btn-danger" type="button">REMOVE</button>
-      </div>
-`;
-  cartRow.innerHTML = cartRowContents;
-  cartItems.append(cartRow);
-  cartRow.getElementsByClassName("btn-danger")[0].addEventListener("click", removeCartItem);
+// Function to update the cart total whenever the user adds or removes items to the cart
+function updateCartTotal() {
+  var cartItemContainer = document.getElementById("shoppingCart");
+  var cartRows = cartItemContainer.getElementsByClassName("cart-row");
+  var total = 0;
+  for (i = 0; i < cartRows.length; i++) {
+    var cartRow = cartRows[i];
+    var priceElement = cartRow.getElementsByClassName("cart-price")[0];
+    var quantityElement = cartRow.getElementsByClassName("cart-quantity-input")[0];
+    var price = parseFloat(priceElement.innerText.replace("$", ""));
+    var quantity = quantityElement.value;
+    total = total + price * quantity;
+  }
+  document.getElementsByClassName("cart-total-price")[0].innerText = `$${total.toFixed(2)}`;
 }
 
 // Check if the user is on the order-information screen - (order-information.html)

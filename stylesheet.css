@@ -359,6 +359,11 @@ strong.cart-total-title {
   margin-right: 20px;
 }
 
+.cart-quantity-input {
+  height: 25px;
+  font-size: 15px;
+}
+
 .cancel-items {
   bottom: 25px;
   position: absolute;
