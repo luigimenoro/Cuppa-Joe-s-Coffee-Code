@@ -9,26 +9,30 @@
   </head>
   <body>
     <div class="ask-number" id="askNumber">
-        <label for="Number of Coffees ">Please enter how many coffees you want to buy</label>
-        <input type="number" id="howManyCoffees" min="1" max="10">
-        <div id="error"></div>
-        <button class="deliveryFormBtn smallbtn" id="startOrder" type="submit">Start Order</button>
+      <label for="Number of Coffees ">Please enter how many coffees you want to buy</label>
+      <input type="number" id="howManyCoffees" min="1" max="10" />
+      <div id="error"></div>
+      <button class="deliveryFormBtn smallbtn" id="startOrder" type="submit">Start Order</button>
     </div>
     <div class="main-cont" id="mainCont ">
       <div class="menu-order-cont">
         <section id="menuContainer"></section>
       </div>
       <div class="shopping-cart hide" id="shoppingCart">
-          <div class="main-title"><h1>Cart</h1></div>
-          <div class="shopping-cart-title">
-            <h1>Item</h1>
-            <h1>Size</h1>
-            <h1>Price</h1>
-            <h1>Quantity</h1>
-          </div>
-          <section id="shoppingCart">
-          </section>
-        </section>
+        <div class="main-title"><h1>Cart</h1></div>
+        <div class="shopping-cart-title">
+          <h1>Item</h1>
+          <h1>Size</h1>
+          <h1>Price</h1>
+          <h1>Quantity</h1>
+        </div>
+        <section id="shoppingCart"></section>
+        <div class="cart-total">
+          <strong class="cart-total-title">Total</strong>
+          <span class="cart-total-price">$90</span>
+        </div>
+        <button id="cancelOrder" class="cancel-items">Cancel Order</button>
+        <button id="buyItems" class="buy-items">Purchase</button>
       </div>
     </div>
     <script src="main.js"></script>

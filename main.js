@@ -109,9 +109,9 @@ function showMenu() {
                 <div class="choose-size">
                 <label for="coffeeSize">Choose your coffee size</label>
                 <select name="coffee" id="coffeeSize1" class="coffee-Size-Chosen">
-                <option value="${PRODUCT[i].regularPrice.toFixed(2)}">Regular -- $${PRODUCT[i].regularPrice.toFixed(2)}</option>
-                <option value="${PRODUCT[i].mediumPrice.toFixed(2)}">Medium -- $${PRODUCT[i].mediumPrice.toFixed(2)}</option>
-                <option value="${PRODUCT[i].largePrice.toFixed(2)}">Large --$${PRODUCT[i].largePrice.toFixed(2)}</option>
+                <option value="${PRODUCT[i].regularPrice.toFixed(2)}">Regular --  $${PRODUCT[i].regularPrice.toFixed(2)}</option>
+                <option value="${PRODUCT[i].mediumPrice.toFixed(2)}">Medium --  $${PRODUCT[i].mediumPrice.toFixed(2)}</option>
+                <option value="${PRODUCT[i].largePrice.toFixed(2)}">Large --      $${PRODUCT[i].largePrice.toFixed(2)}</option>
                 </select>
                 </div>
                 <div class="amountProduct flex">
@@ -180,7 +180,7 @@ function checkValid(userInput, errorText) {
     errorText = "";
     let errorMessage = document.getElementById("error");
     errorMessage.innerHTML = errorText;
-    return true;
+    return userInput;
   }
 }
 // Function to add items to cart
@@ -197,6 +197,8 @@ function addItemToCartClicked(event) {
   addItemtoCart(title, price, size, quantity);
 }
 
+// Adds item that is clicked to thhe cart, in this function it will have 4 different parameters that is needded to be specified in orde for the function to occur.
+//
 function addItemtoCart(title, price, size, quantity) {
   var cartRow = document.createElement("div");
   cartRow.classList.add("cart-row");
@@ -278,6 +280,7 @@ if (window.location.href.includes("/menu.html")) {
     }
     // Store the entered number of coffees that the user are buying to an array
     numberofCoffees.push(numOfCoffees);
+    alert(numberofCoffees[0]);
     startOrder.classList.add("hide");
     shoppingCart.classList.remove("hide");
     askNumber.classList.add("hide");

@@ -175,8 +175,13 @@ h2 {
 .ask-number {
   text-align: center;
   margin-top: 16%;
-  font-size: 15px;
+  font-size: 18px;
   font-family: "Inter", sans-serif;
+}
+
+.ask-number input {
+  font-size: 18px;
+  height: 30px;
 }
 .main-cont {
   display: flex;
@@ -325,4 +330,49 @@ h2 {
   font-weight: bolder;
   width: 60px;
   text-overflow: ellipsis;
+}
+
+.cart-total {
+  position: absolute;
+  bottom: 60px;
+  right: 0;
+  padding: 30px;
+  display: flex;
+  font-size: 40px;
+}
+
+.buy-items {
+  position: absolute;
+  bottom: 20px;
+  margin-right: 35px;
+  right: 0;
+  background-color: rgb(31, 195, 106);
+  border: rgb(31, 195, 106);
+  border-radius: 10px;
+  color: white;
+  font-size: 20px;
+  padding: 20px 40px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+strong.cart-total-title {
+  margin-right: 20px;
+}
+
+.cancel-items {
+  bottom: 25px;
+  position: absolute;
+  margin-left: 10px;
+  border-radius: 10px;
+  color: black;
+  border: rgb(255, 0, 0) 2px solid;
+  background-color: white;
+  font-size: 18px;
+  padding: 10px 20px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.buy-items:hover,
+.cancel-items:hover {
+  cursor: pointer;
 }
