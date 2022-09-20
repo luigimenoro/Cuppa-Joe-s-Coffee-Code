@@ -154,11 +154,27 @@ function ready() {
     var button = addItemToCartBtns[i];
     button.addEventListener("click", addItemToCartClicked);
   }
+
+  document.getElementById("buyItems").addEventListener("click", purchaseClicked);
+}
+
+function purchaseClicked() {
+  var cartItems = document.getElementsByClassName("cart-items")[0];
+  if (cartItems.childNodes.length <= 0) {
+    alert("YOu have notjao s");
+  } else if (cartItems.childNodes.length >= 1) {
+    alert(`Thankyou for you purchase `);
+    while (cartItems.hasChildNodes()) {
+      cartItems.removeChild(cartItems.firstChild);
+    }
+  }
+
+  updateCartTotal();
 }
 
 function quantityChanged(event) {
   var input = event.target;
-  if (isNaN(input.value) || input.value <= 0) {
+  if (isNaN(input.value) || input.value <= 0 || input.value > 10) {
     input.value = 1;
   }
   updateCartTotal();
@@ -200,6 +216,7 @@ function getSize(item) {
   }
   return size;
 }
+
 // Adds item that is clicked to thhe cart, in this function it will have 4 different parameters that is needded to be specified in orde for the function to occur.
 function addItemtoCart(title, price, size, quantity) {
   var cartRow = document.createElement("div");
