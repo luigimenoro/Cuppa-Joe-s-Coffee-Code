@@ -80,6 +80,7 @@ var PRODUCT = {
 };
 
 var numberofCoffees = [];
+var FINALORDER = [];
 
 // To identify the length of the array named products as it is a associative array, as simple .length function won't work
 let length = function (array) {
@@ -155,21 +156,118 @@ function ready() {
     button.addEventListener("click", addItemToCartClicked);
   }
 
+  // If the purchase button has been clicked it will run the purchaseClicked() function
   document.getElementById("buyItems").addEventListener("click", purchaseClicked);
+
+  // If the cancel button has been clicked it will redirect the user to the index.html
+  document.getElementById("cancelOrder").addEventListener("click", function (e) {
+    e.preventDefault();
+    numberofCoffees.splice(0);
+    alert("Cancelling the order");
+    // To open the the index.html when the user clicks the cancel order
+    window.location.assign("index.html");
+  });
+
+  // If the add another button is clicked
+  document.getElementById("addAnotherOrder").addEventListener("click", function (e) {
+    e.preventDefault;
+    // To open the the index.html when the user clicks the the add another order button
+    window.location.assign("index.html");
+
+    var menuContainer = document.getElementById("mainCont ");
+    menuContainer.style.display = "flex";
+  });
 }
 
+// Checks if the purchase button has been clicked, if it is then it will either check if the shopping cart consists of items, it will check if the item quantity inside the shopping cart is greater than the number of coffees that the user have entered
 function purchaseClicked() {
   var cartItems = document.getElementsByClassName("cart-items")[0];
+  var menuContainer = document.getElementById("mainCont ");
+  var orderFinalInfo = document.getElementById("orderFinalInfo");
+  var lastBtns = document.getElementById("lastBtns");
+
   if (cartItems.childNodes.length <= 0) {
-    alert("YOu have notjao s");
+    alert("You have not added any items to the your shopping cart");
+  } else if (checkedQuantity() > numberofCoffees[0]) {
+    alert(`You have exceeded the number of coffee that you have entered. 
+Please reduce your shopping cart quantity to maximum of ${numberofCoffees[0]} coffees or less`);
   } else if (cartItems.childNodes.length >= 1) {
     alert(`Thankyou for you purchase `);
-    while (cartItems.hasChildNodes()) {
-      cartItems.removeChild(cartItems.firstChild);
-    }
+    menuContainer.style.display = "none";
+    orderFinalInfo.classList.remove("hide");
+    lastBtns.classList.remove("hide");
+    orderInformation();
+    orderInfoFinal();
   }
+}
 
-  updateCartTotal();
+// Function final message or order confirmation
+function orderInfoFinal() {
+  // Get the the position or the divs where the information will be added within the final section or screen
+  var subTotal = document.getElementById("subTotal");
+  var deliveryFee = document.getElementById("deliveryFee");
+  var totalPriceOrder = document.getElementById("totalPriceOrder");
+
+  // Get the position of the divs
+  var costumerName = document.getElementById("costumerName");
+  var costumerAddress = document.getElementById("costumerAddress");
+  var costumerNumber = document.getElementById("costumerNumber");
+
+  // Get the total price
+  var totalPrice = document.getElementsByClassName("cart-total-price")[0];
+
+  // Check if the user has chosen for delivery
+  if (sessionStorage.getItem("pickup") == "false") {
+    // Codes for adding the information of the user if the user chooses delivery option. In this case, will show the adress and the number of the user
+    costumerName.innerText = sessionStorage.getItem("name");
+    costumerAddress.innerText = sessionStorage.getItem("address");
+    costumerNumber.innerText = sessionStorage.getItem("phone number");
+
+    // Codes for the addition of the delivery charge if the user has chosen delivery -  the code below will code for the total dollars
+    subTotal.innerText = totalPrice.innerText;
+    deliveryFee.innerText = `$${DELIVERYPRICE.toFixed(2)}`;
+    var total = parseFloat(totalPrice.innerText.replace("$", ""));
+    var totalOrder = total + DELIVERYPRICE;
+    totalPriceOrder.innerText = `$${totalOrder.toFixed(2)}`;
+  } else if (sessionStorage.getItem("pickup") == "true") {
+    // Codes for adding the information of the user if the user chooses pickup option.
+    costumerName.innerText = sessionStorage.getItem("name");
+    costumerAddress.innerText = "";
+    costumerNumber.innerText = "";
+
+    // Codes for the addition of the delivery charge if the user has chosen delivery -  the code below will code for the total dollars
+    subTotal.innerText = totalPrice.innerText;
+    deliveryFee.innerText = `No fee`;
+    totalPriceOrder.innerText = `${subTotal.innerText}`;
+  }
+}
+
+//  Function that when run, it will add the items in the shopping cart to the final order information section
+function orderInformation() {
+  var cartItemContainer = document.getElementById("shoppingCart");
+  var cartRows = cartItemContainer.getElementsByClassName("cart-row");
+  for (i = 0; i < cartRows.length; i++) {
+    var cartRow = cartRows[i];
+    var priceElement = cartRow.getElementsByClassName("cart-price")[0].innerText;
+    var quantityElement = cartRow.getElementsByClassName("cart-quantity-input")[0].value;
+    var itemTitle = cartRow.getElementsByClassName("cart-item-title")[0].innerText;
+    var itemSize = cartRow.getElementsByClassName("cart-size")[0].innerText;
+
+    var cartItemContainer = document.getElementById("shoppingCart");
+    var cartRows = cartItemContainer.getElementsByClassName("cart-row");
+    var orderItems = document.getElementsByClassName("order-items")[0];
+    var cartRowContents = `
+        <div class="order-information">
+          <div class="cart-item cart-column-order">
+              <span class="cart-item-title">${itemTitle}</span>
+          </div>
+          <span class="cart-size">${quantityElement} ${itemSize}</span>
+          <span class="cart-price cart-column">${priceElement}</span>
+          </div>
+          <hr>
+  `;
+    orderItems.innerHTML += cartRowContents;
+  }
 }
 
 function quantityChanged(event) {
@@ -179,6 +277,7 @@ function quantityChanged(event) {
   }
   updateCartTotal();
 }
+
 // Function that will remove items that is present in the shopping cart - please write more things in here
 function removeCartItem(event) {
   var btnClicked = event.target;
@@ -193,7 +292,7 @@ function getValueFromSelect(div, name) {
 }
 
 function checkValid(userInput, errorText) {
-  if (!userInput || userInput > 10 || userInput < 1) {
+  if (!userInput || userInput > 10 || userInput < 1 || userInput.charAt(0) == "0") {
     let errorMessage = document.getElementById("error");
     errorMessage.innerHTML = errorText;
     return false;
@@ -222,7 +321,8 @@ function addItemtoCart(title, price, size, quantity) {
   var cartRow = document.createElement("div");
   cartRow.classList.add("cart-row");
   var cartItems = document.getElementsByClassName("cart-items")[0];
-  // Check if the same items has been added to the shoppning cart
+
+  // Check if the same items has been added to the shopping cart
   var cartItemNames = cartItems.getElementsByClassName("cart-item-title");
   var cartItemSize = cartItems.getElementsByClassName("cart-size");
   for (i = 0; i < cartItemNames.length; i++) {
@@ -231,6 +331,7 @@ function addItemtoCart(title, price, size, quantity) {
       return;
     }
   }
+
   var cartRowContents = `
         <div class="cart-item cart-column">
             <span class="cart-item-title">${title}</span>
@@ -261,9 +362,23 @@ function addItemToCartClicked(event) {
   var size = getSize(price); //Retrieve the size that hthey have chosen
   let getQuantity = getValueFromSelect(shopItem, "amountChosen"); // Retrieve the quantity of products that they are thinking of buying.
   let quantity = getQuantity.options[getQuantity.selectedIndex].value;
-  console.log(title, price, size, quantity);
+  // console.log(title, price, size, quantity);
   addItemtoCart(title, price, size, quantity);
   updateCartTotal();
+}
+
+// Function to check the quantity that the user have chosen
+function checkedQuantity() {
+  var cartItemContainer = document.getElementById("shoppingCart");
+  var cartRows = cartItemContainer.getElementsByClassName("cart-row");
+  quantityTotal = 0;
+  for (i = 0; i < cartRows.length; i++) {
+    var cartRow = cartRows[i];
+    var quantityElement = cartRow.getElementsByClassName("cart-quantity-input")[0];
+    var quantity1 = quantityElement.value;
+    quantityTotal += +quantity1;
+  }
+  return quantityTotal;
 }
 
 // Function to update the cart total whenever the user adds or removes items to the cart
@@ -343,7 +458,6 @@ if (window.location.href.includes("/menu.html")) {
     }
     // Store the entered number of coffees that the user are buying to an array
     numberofCoffees.push(numOfCoffees);
-    alert(numberofCoffees[0]);
     startOrder.classList.add("hide");
     shoppingCart.classList.remove("hide");
     askNumber.classList.add("hide");

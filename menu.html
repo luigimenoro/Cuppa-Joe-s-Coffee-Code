@@ -37,6 +37,53 @@
         <button id="buyItems" class="buy-items">Purchase</button>
       </div>
     </div>
+
+    <div class="order-final-info hide" id="orderFinalInfo">
+      <h1 class="final-order">Order Complete</h1>
+      <div class="personal-info">
+        <div class="costumer-info">
+          <h1>Costumer's Information</h1>
+          <div class="costumer-name" id="costumerName"></div>
+          <div class="deliver-address" id="costumerAddress"></div>
+          <div class="phone-num" id="costumerNumber"></div>
+        </div>
+        <div class="last-message">
+          <span>Thankyou for shopping with us, we hope you enjoy your coffees :)</span>
+        </div>
+      </div>
+      <div class="order-information">
+        <div class="order-title">
+          <div class="order-infomration-title">
+            <h1 class="name">Item</h1>
+            <h1>Quantity & Size</h1>
+            <h1>Price per item</h1>
+          </div>
+          <div class="order-items"></div>
+        </div>
+      </div>
+      <div class="total">
+        <div class="sub-total">
+          <div class="total-title">Sub-total:</div>
+          <div class="total-value" id="subTotal"></div>
+        </div>
+        <div class="delivery-fee">
+          <div class="total-title">Delivery Fee:</div>
+          <div class="total-value" id="deliveryFee"></div>
+        </div>
+        <div class="total-order">
+          <div class="total-title highlight">Total:</div>
+          <div class="total-value" id="totalPriceOrder"></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="lastBtns" class="hide">
+      <div class="button-sec">
+        <button class="add-new-order btn-end" id="addAnotherOrder">Add Another Order</button>
+        <button class="exit btn-end" id="endProgram" onclick="location.href='https://www.google.com'">Exit the program</button>
+      </div>
+    </div>
+
     <script src="main.js"></script>
   </body>
 </html>

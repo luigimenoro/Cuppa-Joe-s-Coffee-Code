@@ -317,8 +317,8 @@ h2 {
   font-weight: bold;
   border-radius: 10px;
   color: white;
-  font-size: 17px;
-  padding: 5px 1px;
+  font-size: 16px;
+  padding: 5px 6px;
 }
 
 .btn-danger:hover {
@@ -380,4 +380,137 @@ strong.cart-total-title {
 .buy-items:hover,
 .cancel-items:hover {
   cursor: pointer;
+}
+
+.order-infomration-title {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.order-information {
+  display: flex;
+  justify-content: space-around;
+  width: 1020px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 14px;
+}
+
+.order-information {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+hr {
+  width: 80%;
+  margin-left: 100px;
+}
+
+.order-infomration-title {
+  width: 990px;
+}
+
+.cart-column-order {
+  width: 90px;
+}
+
+.order-items {
+  margin-left: -25px;
+}
+
+.final-order {
+  text-align: center;
+  font-size: 45px;
+}
+
+.name {
+  padding-left: 40px;
+  text-align: center;
+}
+
+.order-final-info {
+  box-shadow: rgb(0 0 0 / 50%) 0px 0.5px 10px 0px;
+  width: 55%;
+  border-radius: 20px;
+  margin-left: 440px;
+  margin-top: 80px;
+}
+
+.personal-info {
+  display: flex;
+  border-bottom: #a3a3a3 3px solid;
+}
+
+.last-message {
+  width: 30%;
+  text-align: right;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 14px;
+  margin-top: 40px;
+  margin-left: 350px;
+}
+.personal-info h1 {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 30px;
+}
+
+.costumer-info {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 14px;
+  margin-left: 40px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.total {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+  margin-left: 770px;
+  margin-top: 40px;
+  padding: 10px;
+}
+
+.sub-total,
+.delivery-fee,
+.total-order {
+  display: flex;
+}
+
+.total-title {
+  width: 140px;
+}
+
+.total-value {
+  margin-left: 40px;
+}
+
+.highlight {
+  color: green;
+}
+
+.button-sec {
+  display: flex;
+  margin-top: 80px;
+  position: absolute;
+  right: 0px;
+  left: 41%;
+}
+
+.btn-end {
+  border-radius: 8px;
+  padding: 20px 10px;
+  background-color: rgba(151, 73, 40, 0.7);
+  color: white;
+  font-size: 17px;
+  margin-left: 20px;
+}
+
+.btn-end:hover {
+  cursor: pointer;
+}
+
+.exit {
+  background-color: red;
+  color: white;
 }
