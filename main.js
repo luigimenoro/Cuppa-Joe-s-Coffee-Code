@@ -1,102 +1,87 @@
-// Assign the constants that will be used such the price and the delivery price
+// Assign the constants that will be used such the price and the delivery price, the medium fee and the large fee
 const PRICE = 5.5;
 const DELIVERYPRICE = 5;
 const MEDIUMFEE = 1;
+const LARGEFEE = 2;
 
 // Assign coffee products
 var PRODUCT = {
   1: {
     name: "Cappuccino",
     regularPrice: PRICE,
-    mediumPrice: PRICE + 1,
-    largePrice: PRICE + 2,
+    mediumPrice: PRICE + MEDIUMFEE,
+    largePrice: PRICE + LARGEFEE,
   },
   2: {
     name: "Flat White",
     regularPrice: PRICE,
-    mediumPrice: PRICE + 1,
-    largePrice: PRICE + 2,
+    mediumPrice: PRICE + MEDIUMFEE,
+    largePrice: PRICE + LARGEFEE,
   },
   3: {
     name: "Hot Mocha",
     regularPrice: PRICE,
-    mediumPrice: PRICE + 1,
-    largePrice: PRICE + 2,
+    mediumPrice: PRICE + MEDIUMFEE,
+    largePrice: PRICE + LARGEFEE,
   },
   4: {
     name: "Café Latte",
     regularPrice: PRICE,
-    mediumPrice: PRICE + 1,
-    largePrice: PRICE + 2,
+    mediumPrice: PRICE + MEDIUMFEE,
+    largePrice: PRICE + LARGEFEE,
   },
   5: {
     name: "Macchiato",
     regularPrice: PRICE,
-    mediumPrice: PRICE + 1,
-    largePrice: PRICE + 2,
+    mediumPrice: PRICE + MEDIUMFEE,
+    largePrice: PRICE + LARGEFEE,
   },
   6: {
     name: "White Choc Mocha",
     regularPrice: PRICE,
-    mediumPrice: PRICE + 1,
-    largePrice: PRICE + 2,
+    mediumPrice: PRICE + MEDIUMFEE,
+    largePrice: PRICE + LARGEFEE,
   },
   7: {
     name: "Chai Latte",
     regularPrice: PRICE,
-    mediumPrice: PRICE + 1,
-    largePrice: PRICE + 2,
+    mediumPrice: PRICE + MEDIUMFEE,
+    largePrice: PRICE + LARGEFEE,
   },
   8: {
     name: "Vanilla Latte",
     regularPrice: PRICE,
-    mediumPrice: PRICE + 1,
-    largePrice: PRICE + 2,
+    mediumPrice: PRICE + MEDIUMFEE,
+    largePrice: PRICE + LARGEFEE,
   },
   9: {
     name: "Long Black",
     regularPrice: PRICE,
-    mediumPrice: PRICE + 1,
-    largePrice: PRICE + 2,
+    mediumPrice: PRICE + MEDIUMFEE,
+    largePrice: PRICE + LARGEFEE,
   },
   10: {
     name: "Caramel Latte",
     regularPrice: PRICE,
-    mediumPrice: PRICE + 1,
-    largePrice: PRICE + 2,
+    mediumPrice: PRICE + MEDIUMFEE,
+    largePrice: PRICE + LARGEFEE,
   },
   11: {
     name: "Short Black",
     regularPrice: PRICE,
-    mediumPrice: PRICE + 1,
-    largePrice: PRICE + 2,
+    mediumPrice: PRICE + MEDIUMFEE,
+    largePrice: PRICE + LARGEFEE,
   },
   12: {
     name: "Piccolo Latte",
     regularPrice: PRICE,
-    mediumPrice: PRICE + 1,
-    largePrice: PRICE + 2,
+    mediumPrice: PRICE + MEDIUMFEE,
+    largePrice: PRICE + LARGEFEE,
   },
 };
 
 var numberofCoffees = [];
 var FINALORDER = [];
-
-// To identify the length of the array named products as it is a associative array, as simple .length function won't work
-let length = function (array) {
-  let size = 0;
-  // Traversing the array
-  for (let key in array) {
-    // Checking if key is present
-    // in arrays or not
-    if (array.hasOwnProperty(key)) {
-      size++;
-    }
-  }
-
-  // Return the size
-  return size;
-};
 
 // Function to show the the products or the coffees that are for sale. In this function it loops through the length of the array called products, and the items that are inside the array is then retrieved and placed into a placeholder within a string. And this string is displayed on the HTML when a button is clicked.
 function showMenu() {
@@ -134,7 +119,25 @@ function showMenu() {
   menuContainer.innerHTML = menuText; //Inserts the menu text string to menu container
 }
 
-// Function that will occur when the user is in the menu page -- write more later
+// To identify the length of the array named products as it is a associative array, a simple .length function won't work
+let length = function (array) {
+  let size = 0;
+  // Traversing the array
+  for (let key in array) {
+    // Checking if key is present
+    // in arrays or not
+    if (array.hasOwnProperty(key)) {
+      size++;
+    }
+  }
+
+  // Return the size
+  return size;
+};
+
+// Function that will occur when the user is in the menu page utilises all the functions needed to function.
+// In this function, when teh remove cart button has been clicked, it wil run the removeCartItem(), when the quanitity input has been changed it will run the quantityChanged() function, if the add item to cart button has been clicked it wil run the addItemToCartClicked() funciton
+// if the purchase button has been clicked, it will run the purchaseClicked() function, if the cancel order button has been clicked it will open the home page, and alert the user that the order will be cancelled. And lastly if the add another order button has been clicked, it will ask go throough the whole process froom the top.
 function ready() {
   // Specifies the buttons that when clicked will remove the item that is present or inside the shopping cart
   var removeCartBtns = document.getElementsByClassName("btn-danger");
@@ -181,13 +184,13 @@ function ready() {
 
 // Checks if the purchase button has been clicked, if it is then it will either check if the shopping cart consists of items, it will check if the item quantity inside the shopping cart is greater than the number of coffees that the user have entered
 function purchaseClicked() {
-  var cartItems = document.getElementsByClassName("cart-items")[0];
-  var menuContainer = document.getElementById("mainCont ");
+  var cartItems = document.getElementsByClassName("cart-items")[0]; // Specify the first cart item on the shopping cart
+  var menuContainer = document.getElementById("mainCont "); // Get the menu container from the HTML
   var orderFinalInfo = document.getElementById("orderFinalInfo");
   var lastBtns = document.getElementById("lastBtns");
 
   if (cartItems.childNodes.length <= 0) {
-    alert("You have not added any items to the your shopping cart");
+    alert("You have not added any items to your shopping cart");
   } else if (checkedQuantity() > numberofCoffees[0]) {
     alert(`You have exceeded the number of coffee that you have entered. 
 Please reduce your shopping cart quantity to maximum of ${numberofCoffees[0]} coffees or less`);
@@ -201,7 +204,7 @@ Please reduce your shopping cart quantity to maximum of ${numberofCoffees[0]} co
   }
 }
 
-// Function final message or order confirmation
+// Function final message or order confirmation, in this function it will identify whether the user has chosen their order to be either for delivery or for pickup.
 function orderInfoFinal() {
   // Get the the position or the divs where the information will be added within the final section or screen
   var subTotal = document.getElementById("subTotal");
@@ -246,6 +249,7 @@ function orderInfoFinal() {
 function orderInformation() {
   var cartItemContainer = document.getElementById("shoppingCart");
   var cartRows = cartItemContainer.getElementsByClassName("cart-row");
+
   for (i = 0; i < cartRows.length; i++) {
     var cartRow = cartRows[i];
     var priceElement = cartRow.getElementsByClassName("cart-price")[0].innerText;
@@ -253,8 +257,6 @@ function orderInformation() {
     var itemTitle = cartRow.getElementsByClassName("cart-item-title")[0].innerText;
     var itemSize = cartRow.getElementsByClassName("cart-size")[0].innerText;
 
-    var cartItemContainer = document.getElementById("shoppingCart");
-    var cartRows = cartItemContainer.getElementsByClassName("cart-row");
     var orderItems = document.getElementsByClassName("order-items")[0];
     var cartRowContents = `
         <div class="order-information">
@@ -270,6 +272,8 @@ function orderInformation() {
   }
 }
 
+// Function that updates the cart total if the quantity of the items chosen has changed. In this function the event parameter is going to be the event that occured when the value of the input label has been changed. In this function it will check if the input is valid, and if it is it will run the updateCartTotal() function.
+// While on the other hand, if the input or the number is not valid for example, it is not a number, less than or equal to 0, or greater than 10, it will automically assign it to 1.
 function quantityChanged(event) {
   var input = event.target;
   if (isNaN(input.value) || input.value <= 0 || input.value > 10) {
@@ -278,7 +282,7 @@ function quantityChanged(event) {
   updateCartTotal();
 }
 
-// Function that will remove items that is present in the shopping cart - please write more things in here
+// Function that will remove items that is present in the shopping cart, in this function when a particular remove button is clicked, it will remove that specific item or product from the shopping cart.
 function removeCartItem(event) {
   var btnClicked = event.target;
   btnClicked.parentElement.parentElement.remove();
@@ -291,6 +295,7 @@ function getValueFromSelect(div, name) {
   return selectElement; // Returns the selectElement
 }
 
+// Function to check if the input that the user has entered is valid or not,it will check if the user input is empty or is greater than 10, or is less than 0 or if it is equal to 0. If it is true, then an error message would be shown and would ask the user again, if it is false, then the value that the user has entered (user input) will be returned
 function checkValid(userInput, errorText) {
   if (!userInput || userInput > 10 || userInput < 1 || userInput.charAt(0) == "0") {
     let errorMessage = document.getElementById("error");
@@ -383,9 +388,12 @@ function checkedQuantity() {
 
 // Function to update the cart total whenever the user adds or removes items to the cart
 function updateCartTotal() {
+  // Set up the variables
   var cartItemContainer = document.getElementById("shoppingCart");
   var cartRows = cartItemContainer.getElementsByClassName("cart-row");
   var total = 0;
+
+  // Loop through the length of the cart rows or the products/items present in the shopping cart
   for (i = 0; i < cartRows.length; i++) {
     var cartRow = cartRows[i];
     var priceElement = cartRow.getElementsByClassName("cart-price")[0];
@@ -454,8 +462,10 @@ if (window.location.href.includes("/menu.html")) {
     // Check if the entered number of coffees is valid
     var numOfCoffees = checkValid(howManyCoffees.value, "Please enter an appropriate amount of coffees you are going to buy. Maximum of 10 coffees per order only");
     if (!numOfCoffees) {
+      howManyCoffees.value = "";
       return;
     }
+
     // Store the entered number of coffees that the user are buying to an array
     numberofCoffees.push(numOfCoffees);
     startOrder.classList.add("hide");
