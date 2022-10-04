@@ -3,6 +3,7 @@ const PRICE = 5.5;
 const DELIVERYPRICE = 5;
 const MEDIUMFEE = 1;
 const LARGEFEE = 2;
+const MAXCOFFEE = 10;
 
 // Assign coffee products
 var PRODUCT = {
@@ -189,11 +190,16 @@ function purchaseClicked() {
   var orderFinalInfo = document.getElementById("orderFinalInfo");
   var lastBtns = document.getElementById("lastBtns");
 
+  // If there is no items found in the shopping cart alert the user saying that there is no items in their shopping cart
   if (cartItems.childNodes.length <= 0) {
     alert("You have not added any items to your shopping cart");
+
+    // Else if the number of items present in teh shopping cart exceeds the number of coffees that they said they were going to buy, alert  the user saying they have exceededd the number of coffees they have entered.
   } else if (checkedQuantity() > numberofCoffees[0]) {
     alert(`You have exceeded the number of coffee that you have entered. 
 Please reduce your shopping cart quantity to maximum of ${numberofCoffees[0]} coffees or less`);
+
+    // However if the numebr of items in their shopping cart is greater than one, and is equal or less than the number of coffees that they said that they were going to buy. Will accept the order, and redirect the user to the final order information section.
   } else if (cartItems.childNodes.length >= 1) {
     alert(`Thankyou for you purchase `);
     menuContainer.style.display = "none";
@@ -211,7 +217,7 @@ function orderInfoFinal() {
   var deliveryFee = document.getElementById("deliveryFee");
   var totalPriceOrder = document.getElementById("totalPriceOrder");
 
-  // Get the position of the divs
+  // Get the variables
   var costumerName = document.getElementById("costumerName");
   var costumerAddress = document.getElementById("costumerAddress");
   var costumerNumber = document.getElementById("costumerNumber");
@@ -238,7 +244,6 @@ function orderInfoFinal() {
     costumerAddress.innerText = "";
     costumerNumber.innerText = "";
 
-    // Codes for the addition of the delivery charge if the user has chosen delivery -  the code below will code for the total dollars
     subTotal.innerText = totalPrice.innerText;
     deliveryFee.innerText = `No fee`;
     totalPriceOrder.innerText = `${subTotal.innerText}`;
@@ -276,7 +281,7 @@ function orderInformation() {
 // While on the other hand, if the input or the number is not valid for example, it is not a number, less than or equal to 0, or greater than 10, it will automically assign it to 1.
 function quantityChanged(event) {
   var input = event.target;
-  if (isNaN(input.value) || input.value <= 0 || input.value > 10) {
+  if (isNaN(input.value) || input.value <= 0 || input.value > MAXCOFFEE) {
     input.value = 1;
   }
   updateCartTotal();
@@ -297,7 +302,7 @@ function getValueFromSelect(div, name) {
 
 // Function to check if the input that the user has entered is valid or not,it will check if the user input is empty or is greater than 10, or is less than 0 or if it is equal to 0. If it is true, then an error message would be shown and would ask the user again, if it is false, then the value that the user has entered (user input) will be returned
 function checkValid(userInput, errorText) {
-  if (!userInput || userInput > 10 || userInput < 1 || userInput.charAt(0) == "0") {
+  if (!userInput || userInput > MAXCOFFEE || userInput < 1 || userInput.charAt(0) == "0") {
     let errorMessage = document.getElementById("error");
     errorMessage.innerHTML = errorText;
     return false;
